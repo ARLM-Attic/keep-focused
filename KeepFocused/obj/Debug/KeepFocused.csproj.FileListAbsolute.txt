@@ -1,0 +1,10 @@
+D:\Yanesh\Projects\KeepFocused\KeepFocused\bin\Debug\KeepFocused.exe
+D:\Yanesh\Projects\KeepFocused\KeepFocused\bin\Debug\KeepFocused.pdb
+D:\Yanesh\Projects\KeepFocused\KeepFocused\obj\Debug\ResolveAssemblyReference.cache
+D:\Yanesh\Projects\KeepFocused\KeepFocused\obj\Debug\KeepFocused.Properties.Resources.resources
+D:\Yanesh\Projects\KeepFocused\KeepFocused\obj\Debug\KeepFocused.Task.resources
+D:\Yanesh\Projects\KeepFocused\KeepFocused\obj\Debug\KeepFocused.csproj.GenerateResource.Cache
+D:\Yanesh\Projects\KeepFocused\KeepFocused\obj\Debug\KeepFocused.exe
+D:\Yanesh\Projects\KeepFocused\KeepFocused\obj\Debug\KeepFocused.pdb
+D:\Yanesh\Projects\KeepFocused\KeepFocused\obj\Debug\KeepFocused.KeepFocusedForm.resources
+D:\Yanesh\Projects\KeepFocused\KeepFocused\obj\Debug\KeepFocused.frmInfo.resources
