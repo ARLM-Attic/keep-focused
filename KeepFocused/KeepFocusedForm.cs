@@ -53,29 +53,51 @@ namespace KeepFocused
             {
                 if (breakPeriod)
                 {
+                    // Break is over.
                     timer1.Enabled = false;
-                    //mins = int.Parse(SessionDuration);
                     breakPeriod = false;
+                    lblTimer.ForeColor = Color.White;
+                    Console.Beep();
                 }
                 else
                 {
-                    mins = int.Parse(pauseDuration);
-                    breakPeriod = true;
+                    // Timer is over, start break
+                    startPause();
+                    arr = lblTimer.Text.Split(':');
+                    mins = int.Parse(arr[0]);
+                    secs = int.Parse(arr[1]);
+                    Console.Beep();
+                    //MessageBox.Show("Pomodoro activity finished", "Keep Focused", MessageBoxButtons.OK, MessageBoxIcon.Asterisk,
+                    //    MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 }
             }
 
             TimeSpan ts = new TimeSpan(0, mins, secs);
             ts = ts.Subtract(new TimeSpan(10));
-            lblTimer.Text = ts.Minutes.ToString() + ":" + ts.Seconds.ToString();
+            lblTimer.Text = String.Format(ts.Minutes.ToString("D2")) + ":" + String.Format(ts.Seconds.ToString("D2"));
         }
 
         private void KeepFocusedForm_Load(object sender, EventArgs e)
         {
-            lblTimer.Text = "25:00";
             lblPlayPause.Image = global::KeepFocused.Properties.Resources.stop_Icon_White;
             lblMoveHandle.Font = new Font("Wingdings", 12.00F, FontStyle.Bold);
-            //new Task().ShowDialog();
+            OpenTaskForm();
+            startTimer();
+            timer1.Enabled = true;
+        }
 
+        private void startTimer()
+        {
+            lblTimer.ForeColor = Color.White;
+            lblTimer.Text = sessionDuration;
+            breakPeriod = false;
+        }
+
+        private void startPause()
+        {
+            lblTimer.ForeColor = Color.HotPink;
+            lblTimer.Text = pauseDuration;
+            breakPeriod = true;
         }
 
         /// <summary>
@@ -107,15 +129,18 @@ namespace KeepFocused
 
         private void lblPlayPause_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = !timer1.Enabled;
-            if (timer1.Enabled)
+            if (!timer1.Enabled)
             {
-                lblTimer.Text = sessionDuration;
                 lblPlayPause.Image = global::KeepFocused.Properties.Resources.stop_Icon_White;
+                startTimer();
                 OpenTaskForm();
+                timer1.Enabled = true;
             }
             else
+            {
                 lblPlayPause.Image = global::KeepFocused.Properties.Resources.Play_Black_Small;
+                timer1.Enabled = false;
+            }
         }
 
         private void lblMoveHandler_MouseHover(object sender, EventArgs e)

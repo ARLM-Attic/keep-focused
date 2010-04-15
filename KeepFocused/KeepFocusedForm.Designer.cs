@@ -47,11 +47,10 @@
             this.lblTimer.Name = "lblTimer";
             this.lblTimer.Size = new System.Drawing.Size(50, 19);
             this.lblTimer.TabIndex = 2;
-            this.lblTimer.Text = "25.00";
+
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
