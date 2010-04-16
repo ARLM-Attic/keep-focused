@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
@@ -25,6 +26,8 @@ namespace KeepFocused
         string pauseDuration = "05:00"; //pause duration in mm:ss format
         bool breakPeriod = false;
 
+        bool optionPlaySound = true;
+        bool optionShowMessage = false;
 
         public KeepFocusedForm()
         {
@@ -57,18 +60,21 @@ namespace KeepFocused
                     timer1.Enabled = false;
                     breakPeriod = false;
                     lblTimer.ForeColor = Color.White;
-                    Console.Beep();
+                    if (optionPlaySound)
+                        SystemSounds.Beep.Play();
                 }
                 else
                 {
-                    // Timer is over, start break
+                    // Acitivity is over, start break
                     startPause();
                     arr = lblTimer.Text.Split(':');
                     mins = int.Parse(arr[0]);
                     secs = int.Parse(arr[1]);
-                    Console.Beep();
-                    //MessageBox.Show("Pomodoro activity finished", "Keep Focused", MessageBoxButtons.OK, MessageBoxIcon.Asterisk,
-                    //    MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    if (optionPlaySound)
+                        SystemSounds.Asterisk.Play();
+                    if (optionShowMessage)
+                        MessageBox.Show("Pomodoro activity finished", "Keep Focused", MessageBoxButtons.OK, MessageBoxIcon.Asterisk,
+                            MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
                 }
             }
 
