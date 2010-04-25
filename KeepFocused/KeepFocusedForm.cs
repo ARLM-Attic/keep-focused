@@ -22,8 +22,8 @@ namespace KeepFocused
         public static extern bool ReleaseCapture();
         #endregion
 
-        string sessionDuration = "25:00";   //session duration in mm:ss format
-        string pauseDuration = "05:00"; //pause duration in mm:ss format
+        string sessionDuration = "01:00";   //session duration in mm:ss format
+        string pauseDuration = "01:00"; //pause duration in mm:ss format
         bool breakPeriod = false;
 
         bool optionPlaySound = true;

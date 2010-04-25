@@ -26,12 +26,18 @@ namespace KeepFocused
 
         private void Task_Load(object sender, EventArgs e)
         {
-            txtSessionDataFileName.Text = TaskFileName;
+                txtSessionDataFileName.Text = TaskFileName;
         }
 
         private void btnViewDataFile_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(TaskFileName);
+            if (File.Exists(TaskFileName))
+                System.Diagnostics.Process.Start(TaskFileName);
+            else
+            {
+                string message = "Log file cannot be read.\r\nThis may be because you are running Keep Focused very first time or you may have deleted the log file.\r\nLogfile will be automatically created when you run the application again.";
+                MessageBox.Show(message, "Keep Focused", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
