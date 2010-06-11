@@ -141,9 +141,9 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Location = new System.Drawing.Point(12, 121);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 13);
+            this.label5.Size = new System.Drawing.Size(102, 13);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Version: 0.3 Alpha";
+            this.label5.Text = "Version: 0.3.1 Alpha";
             // 
             // frmInfo
             // 
