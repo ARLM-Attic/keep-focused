@@ -27,7 +27,7 @@ namespace KeepFocused
         bool breakPeriod = false;
 
         bool optionPlaySound = true;
-        bool optionShowMessage = false;
+        bool optionShowMessage = true;
 
         public KeepFocusedForm()
         {
