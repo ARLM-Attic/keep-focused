@@ -45,9 +45,8 @@
             this.lblTimer.Location = new System.Drawing.Point(37, 0);
             this.lblTimer.Margin = new System.Windows.Forms.Padding(0);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(50, 19);
+            this.lblTimer.Size = new System.Drawing.Size(0, 19);
             this.lblTimer.TabIndex = 2;
-
             // 
             // timer1
             // 
@@ -130,6 +129,7 @@
             this.Text = "Form1";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.KeepFocusedForm_Load);
+            this.Move += new System.EventHandler(this.KeepFocusedForm_Move);
             this.ResumeLayout(false);
             this.PerformLayout();
 

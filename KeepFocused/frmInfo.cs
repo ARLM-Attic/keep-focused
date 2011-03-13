@@ -58,5 +58,18 @@ namespace KeepFocused
         {
             this.Close();
         }
+
+        private void OptionsButton_Click(object sender, EventArgs e)
+        {
+            new Options().ShowDialog();
+        }
+
+        private void btnOptions_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            new Options().Show();
+        }
+
+  
     }
 }

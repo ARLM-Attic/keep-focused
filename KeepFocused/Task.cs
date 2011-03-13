@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using KeepFocused;
 
 namespace KeepFocused
 {
@@ -19,8 +20,9 @@ namespace KeepFocused
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            File.AppendAllText(TaskFileName, DateTime.Now.ToString("dd:MMM:yyyy hh:mm") + ":: " +  txtTask.Text + "\r\n");
+        {            
+            global::KeepFocused.Tasks.message = txtTask.Text;
+            File.AppendAllText(TaskFileName, "\r start > [       ]" + DateTime.Now.ToString("dd:MMM:yyyy hh:mm") + ":: Task = " + KeepFocused.Tasks.message + "\r\n");
             this.Close();
         }
 
@@ -38,6 +40,10 @@ namespace KeepFocused
                 string message = "Log file cannot be read.\r\nThis may be because you are running Keep Focused very first time or you may have deleted the log file.\r\nLogfile will be automatically created when you run the application again.";
                 MessageBox.Show(message, "Keep Focused", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void btnOptions_Click(object sender, EventArgs e)
+        {
+            new Options().ShowDialog();
         }
     }
 }

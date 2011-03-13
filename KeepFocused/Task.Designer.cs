@@ -37,6 +37,7 @@
             this.lblBrowse = new System.Windows.Forms.Button();
             this.btnViewDataFile = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnOptions = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtTask
@@ -44,12 +45,12 @@
             this.txtTask.Location = new System.Drawing.Point(6, 29);
             this.txtTask.Multiline = true;
             this.txtTask.Name = "txtTask";
-            this.txtTask.Size = new System.Drawing.Size(459, 94);
+            this.txtTask.Size = new System.Drawing.Size(540, 94);
             this.txtTask.TabIndex = 0;
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(324, 162);
+            this.btnOK.Location = new System.Drawing.Point(413, 162);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(65, 23);
             this.btnOK.TabIndex = 1;
@@ -59,7 +60,8 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(395, 162);
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(484, 162);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(62, 23);
             this.btnClose.TabIndex = 2;
@@ -114,13 +116,24 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(150, 162);
+            this.button2.Location = new System.Drawing.Point(231, 162);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(138, 23);
             this.button2.TabIndex = 8;
             this.button2.Text = "&Change File Path";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Visible = false;
+            //this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnOptions
+            // 
+            this.btnOptions.Location = new System.Drawing.Point(150, 162);
+            this.btnOptions.Name = "btnOptions";
+            this.btnOptions.Size = new System.Drawing.Size(75, 23);
+            this.btnOptions.TabIndex = 9;
+            this.btnOptions.Text = "Options";
+            this.btnOptions.UseVisualStyleBackColor = true;
+            this.btnOptions.Click += new System.EventHandler(this.btnOptions_Click);
             // 
             // Task
             // 
@@ -128,7 +141,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(469, 195);
+            this.ClientSize = new System.Drawing.Size(554, 195);
+            this.Controls.Add(this.btnOptions);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnViewDataFile);
             this.Controls.Add(this.lblBrowse);
@@ -159,5 +173,6 @@
         private System.Windows.Forms.Button lblBrowse;
         private System.Windows.Forms.Button btnViewDataFile;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnOptions;
     }
 }

@@ -8,6 +8,9 @@ using System.Media;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.IO;
+using System.Resources;
+using System.Reflection;
 
 namespace KeepFocused
 {
@@ -28,10 +31,27 @@ namespace KeepFocused
 
         bool optionPlaySound = true;
         bool optionShowMessage = true;
+        SoundPlayer player = new SoundPlayer();
+
+        string TaskFileName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\KeepFocusedTask.txt";
 
         public KeepFocusedForm()
         {
             InitializeComponent();
+
+            //Read last application position from settings
+            if (GlobalSettings.Top != 0)
+                this.Top = Properties.Settings.Default.Top;
+
+            if (GlobalSettings.Left != 0)
+                this.Top = Properties.Settings.Default.Left;
+
+            if (File.Exists(GlobalSettings.TickingSoundFile))
+                player.SoundLocation = GlobalSettings.TickingSoundFile;
+            else
+                player.Stream = Properties.Resources.clock_tick1;
+            player.Load();
+
         }
 
         private void lblMoveHandler_MouseDown(object sender, MouseEventArgs e)
@@ -51,6 +71,7 @@ namespace KeepFocused
             arr = lblTimer.Text.Split(':');
             int mins = int.Parse(arr[0]);
             int secs = int.Parse(arr[1]);
+            KeepFocused.Tasks.paused = false;
 
             if (mins == 0 && secs == 0)
             {
@@ -59,6 +80,15 @@ namespace KeepFocused
                     // Break is over.
                     timer1.Enabled = false;
                     breakPeriod = false;
+
+                    if (File.Exists(GlobalSettings.TickingSoundFile))
+
+                        player.SoundLocation = GlobalSettings.TickingSoundFile;
+                    else
+                        player.Stream = Properties.Resources.clock_tick1;
+                    player.Load();
+
+
                     lblTimer.ForeColor = Color.White;
                     if (optionPlaySound)
                         SystemSounds.Beep.Play();
@@ -66,21 +96,43 @@ namespace KeepFocused
                 else
                 {
                     // Acitivity is over, start break
+                    // when the pomodoro finish
                     startPause();
                     arr = lblTimer.Text.Split(':');
                     mins = int.Parse(arr[0]);
                     secs = int.Parse(arr[1]);
-                    if (optionPlaySound)
-                        SystemSounds.Asterisk.Play();
+                    if (GlobalSettings.PlayAlarmSound)
+                    {
+                        if (File.Exists(GlobalSettings.AlarmSoundFile))
+
+                            player.SoundLocation = GlobalSettings.AlarmSoundFile;
+                        else
+                            player.Stream = Properties.Resources.ringing;
+                        player.Load();
+                        player.PlaySync();
+
+                    }
                     if (optionShowMessage)
                         MessageBox.Show("Pomodoro activity finished", "Keep Focused", MessageBoxButtons.OK, MessageBoxIcon.Asterisk,
                             MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+
+                    //reset sound file 
+                    if (File.Exists(GlobalSettings.TickingSoundFile))
+                        player.SoundLocation = GlobalSettings.TickingSoundFile;
+                    else
+                        player.Stream = Properties.Resources.clock_tick1;
+                    player.Load();
+
+
                 }
             }
 
             TimeSpan ts = new TimeSpan(0, mins, secs);
             ts = ts.Subtract(new TimeSpan(10));
             lblTimer.Text = String.Format(ts.Minutes.ToString("D2")) + ":" + String.Format(ts.Seconds.ToString("D2"));
+            if (GlobalSettings.PlayTickingSound && !breakPeriod)
+                // SystemSounds.Beep.Play();
+                player.PlaySync();
         }
 
         private void KeepFocusedForm_Load(object sender, EventArgs e)
@@ -95,19 +147,22 @@ namespace KeepFocused
         private void startTimer()
         {
             lblTimer.ForeColor = Color.White;
-            lblTimer.Text = sessionDuration;
+            lblTimer.Text = GlobalSettings.SessionTime;
             breakPeriod = false;
+            if (optionPlaySound)
+                SystemSounds.Beep.Play();
+
         }
 
         private void startPause()
         {
             lblTimer.ForeColor = Color.HotPink;
-            lblTimer.Text = pauseDuration;
+            lblTimer.Text = GlobalSettings.BreakTime;
             breakPeriod = true;
         }
 
         /// <summary>
-        /// This function is not ued now. It is a candidate for blogging or source library.
+        /// This function is not used now. It is a candidate for blogging or source library.
         /// </summary>
         /// <param name="button"></param>
         private void RemoveButtonBorder(Button button)
@@ -130,6 +185,13 @@ namespace KeepFocused
 
         private void lblClose_Click(object sender, EventArgs e)
         {
+            //before close, calculate the TOTAL time spent
+            if (KeepFocused.Tasks.paused != true)
+            {
+                File.AppendAllText(TaskFileName, " #log: task done without pause \r\n\n");
+            }
+            File.AppendAllText(TaskFileName, " FINAL = [ " + KeepFocused.Tasks.totalMin.ToString() + "m " + KeepFocused.Tasks.totalSec.ToString() + "s ]:: Total:" + DateTime.Now.ToString("dd:MMM:yyyy hh:mm") + " \r\n\n\n############### closed here ###############\r\n\n");
+
             Application.Exit();
         }
 
@@ -144,8 +206,34 @@ namespace KeepFocused
             }
             else
             {
+                /* 
+                 * calculate the spent time based on 25 minutes
+                 * @author Arthur Bernardes
+                 *
+                 **/
+
+                string[] arr;
+                arr = lblTimer.Text.Split(':');
+                int mins = 25 - int.Parse(arr[0]);
+                int secs = 60 - int.Parse(arr[1]);
+
+                /*
+                 * record a total time while the program it´s opened
+                 * 
+                 **/
+                if (mins != 25 || mins != 24)
+                    KeepFocused.Tasks.totalMin += mins;
+
+                KeepFocused.Tasks.totalSec += secs;
+
+                string totalDuration = null;
+
+                totalDuration = "[ " + mins.ToString() + "m " + secs.ToString() + "s ]::duration:";
+
                 lblPlayPause.Image = global::KeepFocused.Properties.Resources.Play_Black_Small;
                 timer1.Enabled = false;
+                File.AppendAllText(TaskFileName, " stop  < " + totalDuration + DateTime.Now.ToString("dd:MMM:yyyy hh:mm") + ":: Task = " + KeepFocused.Tasks.message + "\r\n\n");
+                KeepFocused.Tasks.paused = true;
             }
         }
 
@@ -161,15 +249,15 @@ namespace KeepFocused
 
         private void ChangeTextColor(Color color)
         {
-            foreach(Control c in this.Controls)
-                if(c is Label)
+            foreach (Control c in this.Controls)
+                if (c is Label)
                     c.ForeColor = color;
         }
 
         private void ChangeBackColor(Color color)
         {
             foreach (Control c in this.Controls)
-                    c.BackColor = color;
+                c.BackColor = color;
         }
 
         private void lblInfo_Click(object sender, EventArgs e)
@@ -188,13 +276,22 @@ namespace KeepFocused
                 taskForm.Top = this.Top - taskForm.Height - 30;
             else
                 taskForm.Top = this.Top + 30;
-            
+
             if (this.Left > maxLeftPosition)
                 taskForm.Left = this.Right - taskForm.Width;
             else
                 taskForm.Left = this.Left;
 
             taskForm.ShowDialog();
+        }
+
+        private void KeepFocusedForm_Move(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Left = this.Left;
+            Properties.Settings.Default.Top = this.Top;
+            Properties.Settings.Default.Save();
+            GlobalSettings.Left = this.Left;
+            GlobalSettings.Top = this.Top;
         }
     }
 }

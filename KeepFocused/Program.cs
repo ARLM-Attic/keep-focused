@@ -15,7 +15,19 @@ namespace KeepFocused
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            LoadKeepFocusedSettings();
             Application.Run(new KeepFocusedForm());
         }
+
+        static void LoadKeepFocusedSettings()
+        {
+            // Load settings for the app
+            GlobalSettings.AlarmSoundFile = Properties.Settings.Default.AlarmSoundFile;
+            GlobalSettings.TickingSoundFile = Properties.Settings.Default.TickingSoundFile;
+            GlobalSettings.PlayAlarmSound = Properties.Settings.Default.PlayAlarmSound;
+            GlobalSettings.PlayTickingSound = Properties.Settings.Default.PlayTickingSound;
+
+        }
+
     }
 }

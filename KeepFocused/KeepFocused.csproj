@@ -15,7 +15,7 @@
     <ManifestCertificateThumbprint>521FD6F215F2D538CEFF860109F7AE83FD7F0135</ManifestCertificateThumbprint>
     <ManifestKeyFile>KeepFocused_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -32,6 +32,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsKeepFocused.cs" />
     <Compile Include="frmInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +82,13 @@
     <Compile Include="KeepFocusedForm.Designer.cs">
       <DependentUpon>KeepFocusedForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Options.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options.Designer.cs">
+      <DependentUpon>Options.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PathFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmInfo.resx">
@@ -88,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KeepFocusedForm.resx">
       <DependentUpon>KeepFocusedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options.resx">
+      <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -118,6 +130,7 @@
     <Compile Include="Task.Designer.cs">
       <DependentUpon>Task.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tasks.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\usermgmt.gif" />
@@ -156,7 +169,7 @@
     <None Include="Resources\Play_Black_Small.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="KeepFocused_TemporaryKey.pfx" />
+    <None Include="app.config" />
     <None Include="Resources\stop_Icon_White.PNG" />
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +203,10 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\clock-tick1.wav" />
+    <Content Include="Resources\ringing.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

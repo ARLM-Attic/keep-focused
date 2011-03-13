@@ -38,6 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnOptions = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,7 +128,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(214, 150);
+            this.btnOK.Location = new System.Drawing.Point(380, 150);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 8;
@@ -143,13 +144,24 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(102, 13);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Version: 0.3.1 Alpha";
+            this.label5.Text = "Version: 0.3.5 Alpha";
+            // 
+            // btnOptions
+            // 
+            this.btnOptions.Location = new System.Drawing.Point(283, 150);
+            this.btnOptions.Name = "btnOptions";
+            this.btnOptions.Size = new System.Drawing.Size(75, 23);
+            this.btnOptions.TabIndex = 10;
+            this.btnOptions.Text = "Options...";
+            this.btnOptions.UseVisualStyleBackColor = true;
+            this.btnOptions.Click += new System.EventHandler(this.btnOptions_Click);
             // 
             // frmInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 185);
+            this.Controls.Add(this.btnOptions);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label4);
@@ -183,5 +195,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnOptions;
     }
 }
