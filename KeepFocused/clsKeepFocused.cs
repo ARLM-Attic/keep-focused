@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace KeepFocused
@@ -16,6 +15,12 @@ namespace KeepFocused
         private static string m_BreakTime = Properties.Settings.Default.BreakTime;
         private static int  m_Left = Properties.Settings.Default.Left;
         private static int  m_Top = Properties.Settings.Default.Top;
+        private static bool m_HourFormat24Hr = Properties.Settings.Default.HourFormat24Hr;
+
+        public static bool HourFormat24Hr {
+            get { return GlobalSettings.m_HourFormat24Hr; }
+            set { GlobalSettings.m_HourFormat24Hr = value; }
+        }
         
 
         public static bool PlayAlarmSound
@@ -66,5 +71,13 @@ namespace KeepFocused
             set { m_Top = value; }
         }
 
+        public static string GetTimeFormatString() {
+            if (m_HourFormat24Hr) {
+                return "dd:MMM:yyyy HH:mm";
+            }
+            else {
+                return "dd:MMM:yyyy hh:mm";
+            }
+        }
     }
 }

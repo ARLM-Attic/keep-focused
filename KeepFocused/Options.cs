@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -25,6 +24,7 @@ namespace KeepFocused
             this.PlayAlarmSoundCheckBox.Checked = GlobalSettings.PlayAlarmSound;
             this.SessionTimeComboBox.Text = GlobalSettings.SessionTime;
             this.BreakTimeComboBox.Text = GlobalSettings.BreakTime;
+            this.HourFormatComboBox.Checked = GlobalSettings.HourFormat24Hr;
                         
         }
 
@@ -48,6 +48,7 @@ namespace KeepFocused
             Properties.Settings.Default.TickingSoundFile = this.TickingSoundTextBox.Text;
             Properties.Settings.Default.SessionTime = this.SessionTimeComboBox.Text;
             Properties.Settings.Default.BreakTime = this.BreakTimeComboBox.Text;
+            Properties.Settings.Default.HourFormat24Hr = this.HourFormatComboBox.Checked;
             Properties.Settings.Default.Save();
             
             //Now save to app Settings so they become active now
@@ -57,6 +58,7 @@ namespace KeepFocused
             GlobalSettings.TickingSoundFile = this.TickingSoundTextBox.Text;
             GlobalSettings.SessionTime = this.SessionTimeComboBox.Text;
             GlobalSettings.BreakTime = this.BreakTimeComboBox.Text;
+            GlobalSettings.HourFormat24Hr = this.HourFormatComboBox.Checked;
 
             this.Close();
         }
@@ -93,6 +95,5 @@ namespace KeepFocused
             }
 
         }
-
      }
 }

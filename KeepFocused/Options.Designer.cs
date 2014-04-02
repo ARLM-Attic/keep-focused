@@ -42,6 +42,8 @@
             this.BreakTimeLabel = new System.Windows.Forms.Label();
             this.SessionTimeComboBox = new System.Windows.Forms.ComboBox();
             this.BreakTimeComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.HourFormatComboBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // TickSoundFileLabel
@@ -181,13 +183,35 @@
             this.BreakTimeComboBox.Size = new System.Drawing.Size(121, 21);
             this.BreakTimeComboBox.TabIndex = 14;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 117);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "24 hr format:";
+            // 
+            // HourFormatComboBox
+            // 
+            this.HourFormatComboBox.AutoSize = true;
+            this.HourFormatComboBox.Checked = true;
+            this.HourFormatComboBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.HourFormatComboBox.Location = new System.Drawing.Point(118, 116);
+            this.HourFormatComboBox.Name = "HourFormatComboBox";
+            this.HourFormatComboBox.Size = new System.Drawing.Size(15, 14);
+            this.HourFormatComboBox.TabIndex = 15;
+            this.HourFormatComboBox.UseVisualStyleBackColor = true;
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 171);
+            this.Controls.Add(this.HourFormatComboBox);
             this.Controls.Add(this.BreakTimeComboBox);
             this.Controls.Add(this.SessionTimeComboBox);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.BreakTimeLabel);
             this.Controls.Add(this.SessionTimeLabel);
             this.Controls.Add(this.btnCancel);
@@ -224,5 +248,7 @@
         private System.Windows.Forms.Label BreakTimeLabel;
         private System.Windows.Forms.ComboBox SessionTimeComboBox;
         private System.Windows.Forms.ComboBox BreakTimeComboBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox HourFormatComboBox;
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Media;
 using System.Text;
 using System.Windows.Forms;
@@ -188,9 +187,9 @@ namespace KeepFocused
             //before close, calculate the TOTAL time spent
             if (KeepFocused.Tasks.paused != true)
             {
-                File.AppendAllText(TaskFileName, " #log: task done without pause \r\n\n");
+                File.AppendAllText(TaskFileName, "##log: task done without pause \r\n");
             }
-            File.AppendAllText(TaskFileName, " FINAL = [ " + KeepFocused.Tasks.totalMin.ToString() + "m " + KeepFocused.Tasks.totalSec.ToString() + "s ]:: Total:" + DateTime.Now.ToString("dd:MMM:yyyy hh:mm") + " \r\n\n\n############### closed here ###############\r\n\n");
+            File.AppendAllText(TaskFileName, "##FINAL = [ " + KeepFocused.Tasks.totalMin.ToString() + "m " + KeepFocused.Tasks.totalSec.ToString() + "s ]:: Total:" + DateTime.Now.ToString("dd:MMM:yyyy hh:mm") + " \r\n\n\n############### closed here ###############\r\n\n");
 
             Application.Exit();
         }
@@ -228,11 +227,11 @@ namespace KeepFocused
 
                 string totalDuration = null;
 
-                totalDuration = "[ " + mins.ToString() + "m " + secs.ToString() + "s ]::duration:";
+                totalDuration = mins.ToString() + "m " + secs.ToString() + "s";
 
                 lblPlayPause.Image = global::KeepFocused.Properties.Resources.Play_Black_Small;
                 timer1.Enabled = false;
-                File.AppendAllText(TaskFileName, " stop  < " + totalDuration + DateTime.Now.ToString("dd:MMM:yyyy hh:mm") + ":: Task = " + KeepFocused.Tasks.message + "\r\n\n");
+                File.AppendAllText(TaskFileName, DateTime.Now.ToString(GlobalSettings.GetTimeFormatString()) + "[stop] [Duration = " + totalDuration + "] :: Task = " + KeepFocused.Tasks.message + "\r\n");
                 KeepFocused.Tasks.paused = true;
             }
         }

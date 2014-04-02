@@ -118,5 +118,17 @@ namespace KeepFocused.Properties {
                 this["Top"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool HourFormat24Hr {
+            get {
+                return ((bool)(this["HourFormat24Hr"]));
+            }
+            set {
+                this["HourFormat24Hr"] = value;
+            }
+        }
     }
 }

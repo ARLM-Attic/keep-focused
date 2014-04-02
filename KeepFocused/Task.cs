@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
@@ -22,7 +21,7 @@ namespace KeepFocused
         private void button1_Click(object sender, EventArgs e)
         {            
             global::KeepFocused.Tasks.message = txtTask.Text;
-            File.AppendAllText(TaskFileName, "\r start > [       ]" + DateTime.Now.ToString("dd:MMM:yyyy hh:mm") + ":: Task = " + KeepFocused.Tasks.message + "\r\n");
+            File.AppendAllText(TaskFileName, DateTime.Now.ToString(GlobalSettings.GetTimeFormatString()) + "[start] :: Task = " + KeepFocused.Tasks.message + "\r\n");
             this.Close();
         }
 
