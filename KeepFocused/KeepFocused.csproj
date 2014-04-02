@@ -212,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\clock-tick1.wav" />
+    <Content Include="Resources\KfLogo32x29.ico" />
     <Content Include="Resources\ringing.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

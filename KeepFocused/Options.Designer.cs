@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
             this.TickSoundFileLabel = new System.Windows.Forms.Label();
             this.AlarmSoundFileLabel = new System.Windows.Forms.Label();
             this.TickingSoundTextBox = new System.Windows.Forms.TextBox();
@@ -44,6 +45,7 @@
             this.BreakTimeComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.HourFormatComboBox = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TickSoundFileLabel
@@ -203,11 +205,22 @@
             this.HourFormatComboBox.TabIndex = 15;
             this.HourFormatComboBox.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(9, 149);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Version: 1.0 Alpha";
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 171);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.HourFormatComboBox);
             this.Controls.Add(this.BreakTimeComboBox);
             this.Controls.Add(this.SessionTimeComboBox);
@@ -224,8 +237,9 @@
             this.Controls.Add(this.TickingSoundTextBox);
             this.Controls.Add(this.AlarmSoundFileLabel);
             this.Controls.Add(this.TickSoundFileLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Options";
-            this.Text = "Options";
+            this.Text = "Keep Focused Options";
             this.Load += new System.EventHandler(this.Options_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -250,5 +264,6 @@
         private System.Windows.Forms.ComboBox BreakTimeComboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox HourFormatComboBox;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Task));
             this.txtTask = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -123,7 +124,6 @@
             this.button2.Text = "&Change File Path";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Visible = false;
-            //this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnOptions
             // 
@@ -153,9 +153,10 @@
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtTask);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Task";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Keep Focused";
+            this.Text = "Keep Focused Task";
             this.Load += new System.EventHandler(this.Task_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
