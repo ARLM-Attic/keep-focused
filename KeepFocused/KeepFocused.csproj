@@ -57,6 +57,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>KfLogo32x29.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -211,6 +214,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="KfLogo32x29.ico" />
     <Content Include="Resources\clock-tick1.wav" />
     <Content Include="Resources\KfLogo32x29.ico" />
     <Content Include="Resources\ringing.wav" />
